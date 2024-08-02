@@ -1,43 +1,66 @@
-const index = require('./User')
- 
- //test
 const express = require('express');
-const hostname = express();
-const port = 4000;
+const path= require('path');
+const pug = require('pug');
+ const serveStatic = require('serve-static');
+//test
+const user = require('./data/User.js');
+const post =require('./data/grades.js');
+
+const app = express();
+const port= 4000;
+
+///// Create and use at least two pieces of custom middleware.
 
 
-const reqFilter = (reqObject,resObject, next) => {
-    console.log("reqFilter");
-     next(); 
- const server = express((req, res) => {
-    res.setHeader ('Content-Type', 'text/html');
-    res.write('<h1 style="color: pink" >This is my webpage!</h1>');
-    res.write('<p>testing..testing..1.2.3..</p>');
-    res.end();
-});
-}
+// const pug = require('pug'); // Import the Pug engine
+// const html = pug.renderFile('./views/index.pug'); // Render the template
+// console.log(pug); 
 
 //Create and use error-handling middleware.
-hostname.use((err, req, res, next) => {
-    res.status(500).send(err.message);
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get("/", (req,res) => {
+    // res.render('/',{title: "Hello", message: "This is my site!"});
+    res.send("Ello Friend!");
 })
 
-hostname.listen(port, hostname, () => {
+
+//Create and use error-handling middleware.
+ app.use(serveStatic, (req,res) => {
+  res.status(500).send(err.message)
+ });
+
+
+
+// app.listen(port, () => console.log('server listening on port: ${port}!'))
+
+
+app.listen(port, app, () => {
     console.log('Server listening at ${port}.');
   });
 
 const logReq = function (req, res, next) {
-    console.log("Request Recieved");
+    console.log("Request, Recieved");
     next();
   };
 
-//Create and use at least two pieces of custom middleware.
-  hostname.get("/home", (req, res) => {
-    res.send("This is my server!");
-  });
+ 
 
-   hostname.use(logReq);
+
+// Create and use at least two pieces of custom middleware.
+  
+  
+
+   app.use(logReq);
  console.log('Hello World')
 
 
 // console.log('Hello World')
+//Template engine for pug
+// const path = require('path');
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
+
