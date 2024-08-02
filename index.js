@@ -1,23 +1,34 @@
 const express = require('express');
 const path= require('path');
 const pug = require('pug');
+const port = 4000;
+const app = express();
+// import User from './data/User.js';
+// import Attendance from './data/Attendance.js';
 
-//  const serveStatic = require('serve-static');
-//test
-const Students = require('./User.js');
-const grades =require('./data/grades.js');
+const userRoutes = require("./route/User");
 
-const app = express ();
-const port= 4000;
+ const serveStatic = require('serve-static');
+// test
+
+// const Students = require('/User');nod
+
+// const grades = require('./data/grades.js');
+
+
 
 ///// Create and use at least two pieces of custom middleware.
+
+app.get('/Attendance', (req, res) => {
+  res.send('Come to class')
+})
 
 
 
 const html = pug.renderFile('./views/index.pug'); // Render the template
 console.log(pug); 
 
- app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static("./styles"));
 
 
 app.get("/", (req,res) => {
