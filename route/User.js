@@ -34,7 +34,6 @@ const Students = [
     },
   ];
   
-  // app.use('/public', express.static(path.join(__dirname, 'public')));
 
   app.get('students', (req, res) => {
     res.json(Students);
@@ -55,9 +54,5 @@ app.use((req, res, next) => {
   next(express);
 });
 
-// router
-   
-// .route("/User", (req, res) => {
-//   res.render('index',{title: "Hello", message: "This is my site!"});;
-// })
+
 

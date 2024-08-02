@@ -15,7 +15,10 @@ const app = express();
 // test
 
 
-
+//Template engine for pug
+// const path = require('path');
+app.set('view engine', 'pug');
+app.set('views', 'views');
 
 app.get('/User', (req, res) => {
   res.send('Come to class')
@@ -28,7 +31,7 @@ app.get('/Attendance', (req, res) => {
 
 //MIDDLEWARE//
 
-const html = pug.renderFile('./views/index.pug'); // Render the template
+const html = pug.renderFile('./views/index.pug'); 
 console.log(pug); 
 
 app.use(express.static("./styles"));
@@ -52,27 +55,20 @@ app.use((err, req, res, next) => {
  app.listen(port, () => console.log('server listening on port: ${port}!'))
 
 
-// app.listen(port, app, () => {
-//     console.log('Server listening at ${port}!');
-//   });
 
 const logReq = function (req, res, next) {
     console.log("Request, Recieved");
     next();
   };
 
-// Create and use at least two pieces of custom middleware.
-  
+
   
 
-   app.use(logReq);
- console.log('Hello World')
+//    app.use(logReq);
+//  console.log('Hello World')
 
 
 // console.log('Hello World')
-//Template engine for pug
-// const path = require('path');
-app.set('view engine', 'pug');
-app.set('views', 'views');
+
 
 
