@@ -1,16 +1,15 @@
 const express = require('express');
 const app = express();
- const port = 4000;
 const path = require('path');
-const route = express.Router();
+const port=4000
 // const serveStatic = require('serve-static');
 
 
 app.get("/User", (req, res) => {
-    res.send("This is my server!");
+  res.render('index',{title: "Hello", message: "This is my site!"});;
 })
 
-app.use('/public', express.static('public'));
+ app.use('/public', express.static('public'));
 
 const Students = [
     {
@@ -33,20 +32,27 @@ const Students = [
     },
   ];
   
- 
-// route.use((req, res, next) => {
-//     console.log('Students')
-    
-// })
+  app.use('/public', express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  console.log('Students');
-  next();
+  app.get('/students', (req, res) => {
+    res.json(Students);
 });
 
+
+// app.use((req, res, next) => {
+//   console.log('Students');
+//   next();
+// });
+
 app.use((err, req, res, next) => {
-  res.status(500).send(err.message);
+  res.status(500).send(UH-OH)
 })
 
-    
+app.use((req, res, next) => {
+  console.log(`Request received for ${req.url}`);
+  next(express);
+});
+
+// app.listen(port, () => console.log('server listening on port: ${port}!'))
+
 module.exports = Students;
