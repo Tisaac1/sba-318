@@ -4,12 +4,13 @@ const app = express();
 const port = 4000;
 const router = express.Router();
 
+
 // const serveStatic = require('serve-static');
 
  app.use('/public', express.static('public'));
 
- app.get('/User', (req, res) => {
-  res.send('Weclome to the student center')
+ app.get('User', (req, res) => {
+  res.send('Welcome to the student center')
 })
 
 const Students = [
@@ -54,13 +55,9 @@ app.use((req, res, next) => {
   next(express);
 });
 
-router
+// router
    
-.route("/User", (req, res) => {
-  res.render('index',{title: "Hello", message: "This is my site!"});;
-})
+// .route("/User", (req, res) => {
+//   res.render('index',{title: "Hello", message: "This is my site!"});;
+// })
 
-
-// app.listen(port, () => console.log('server listening on port: ${port}!'))
-
-module.exports = router;

@@ -4,7 +4,7 @@ const port = 4000;
 // const serveStatic = require('serve-static');
 
 app.get('/Attendance', (req, res) => {
-  res.send('Come to class')
+  res.redirect('https://www.myattendancetracker.com/')
 })
 
 
@@ -12,4 +12,3 @@ app.get('/Attendance', (req, res) => {
   //   console.log(`Server is running at http://localhost:${}`);
   // });
 
-  module.exports = router;
