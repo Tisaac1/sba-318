@@ -6,7 +6,7 @@ Use Express middleware.
 Use a template engine to render views with Express.
 Interact with a self-made API through HTML forms.
 
-I had alot of bugs and I am having issues transfering back and forth on google chrome for the files under data
+I had alot of bugs and I am having issues transfering back and forth on google chrome for the files under routes//will continue to work on this//
 
 //https://codesandbox.io/p/devbox/express-creating-template-engines-forked-ppvlf7?embed=1&file=%2Fdata%2Fusers.js
 
