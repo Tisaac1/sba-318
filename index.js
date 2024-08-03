@@ -10,6 +10,7 @@ const AttendanceRoute = require('./route/Attendance');
 
 
  const serveStatic = require('serve-static');
+ app.use(express.static(path.join(__dirname, 'styles')));
 
 // test
 
@@ -20,17 +21,17 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 
-app.use('/User', UserRoute);
+// app.use('/User', UserRoute);
 
-app.get('/User', (req, res) => {
-  res.send('Come to class')
-})
+// app.get('/User', (req, res) => {
+//   res.send('Come to class')
+// })
 
-app.use('/Attendance', AttendanceRoute);
+// app.use('/Attendance', AttendanceRoute);
 
-app.get('/Attendance', (req, res) => {
-  res.redirect('https://www.myattendancetracker.com/')
-})
+// app.get('/Attendance', (req, res) => {
+//   res.redirect('https://www.myattendancetracker.com/')
+// })
 
 
 //MIDDLEWARE//
@@ -52,7 +53,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const user = (req, res, next) => {
+const userMiddleware = (req, res, next) => {
     if (req.user) {
         req.user = { id: req.user.id, username: req.user.username };
     } else {
@@ -60,6 +61,9 @@ const user = (req, res, next) => {
     }
     next();
 };
+
+
+app.use(userMiddleware);
 
 // render view w/ form
 app.get('/', (req, res) => {
