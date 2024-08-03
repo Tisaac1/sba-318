@@ -4,7 +4,7 @@ const pug = require('pug');
 const port = 4000;
 const app = express();
 
-// const bodyParser = require('body-parser');
+// routes
 const UserRoute = require('./route/User');
 const AttendanceRoute = require('./route/Attendance');
 
@@ -21,11 +21,12 @@ app.set('views', 'views');
 
 
 app.use('/User', UserRoute);
-app.use('/Attendance', AttendanceRoute);
 
 app.get('/User', (req, res) => {
   res.send('Come to class')
 })
+
+app.use('/Attendance', AttendanceRoute);
 
 app.get('/Attendance', (req, res) => {
   res.redirect('https://www.myattendancetracker.com/')
@@ -40,10 +41,10 @@ console.log(pug);
 app.use(express.static("./styles"));
 
 
-app.get("/", (req,res) => {
-    //  res.render('index',{title: "Hello", message: "This is my site!"}); //THIS test out my error message
-    res.send("Welcome to attendance tracker");
-})
+// app.get("/", (req,res) => {
+//     //  res.render('index',{title: "Hello", message: "This is my site!"}); //THIS test out my error message
+//     res.send("Welcome to attendance tracker");
+// })
 
 
 app.use((req, res, next) => {
@@ -51,7 +52,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const User = (req, res, next) => {
+const user = (req, res, next) => {
     if (req.user) {
         req.user = { id: req.user.id, username: req.user.username };
     } else {
@@ -72,7 +73,6 @@ app.use((err, req, res, next) => {
   res.status(500).send('Error with pug!');
 });
 
-let Attendance = []; 
 
  app.listen(port, () => console.log('server listening on port: ${port}!'))
 
@@ -93,5 +93,3 @@ const logReq = function (req, res, next) {
 // console.log('Hello World')
 
 
-
-1
