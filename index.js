@@ -14,6 +14,10 @@ const AttendanceRoute = require('./route/Attendance');
 
 // test
 
+UserRoute.get('/User', (req, res) => {
+  res.send('User');
+});
+
 
 //Template engine for pug
 // const path = require('path');
@@ -67,9 +71,13 @@ app.use(userMiddleware);
 
 // render view w/ form
 app.get('/', (req, res) => {
-  res.render('addPost');
+  res.render('');
 });
 
+const logReq = function (req, res, next) {
+  console.log("Request, Recieved");
+  next();
+};
 //Create and use error-handling middleware.
 
 app.use((err, req, res, next) => {
@@ -82,10 +90,7 @@ app.use((err, req, res, next) => {
 
 
 
-const logReq = function (req, res, next) {
-    console.log("Request, Recieved");
-    next();
-  };
+
 
 
   
@@ -95,5 +100,4 @@ const logReq = function (req, res, next) {
 
 
 // console.log('Hello World')
-
 
