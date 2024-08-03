@@ -5,9 +5,8 @@ const port = 4000;
 const app = express();
 
 // const bodyParser = require('body-parser');
-// const User = require ('./route/User');
-// const Attendance = require ('./route/Attendance');
-
+const UserRoute = require('./route/User');
+const AttendanceRoute = require('./route/Attendance');
 
 
  const serveStatic = require('serve-static');
@@ -19,6 +18,10 @@ const app = express();
 // const path = require('path');
 app.set('view engine', 'pug');
 app.set('views', 'views');
+
+
+app.use('/User', UserRoute);
+app.use('/Attendance', AttendanceRoute);
 
 app.get('/User', (req, res) => {
   res.send('Come to class')
@@ -39,9 +42,28 @@ app.use(express.static("./styles"));
 
 app.get("/", (req,res) => {
     //  res.render('index',{title: "Hello", message: "This is my site!"}); //THIS test out my error message
-    res.send("Ello Friend! Welcome to my site");
+    res.send("Welcome to attendance tracker");
 })
 
+
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
+const User = (req, res, next) => {
+    if (req.user) {
+        req.user = { id: req.user.id, username: req.user.username };
+    } else {
+        req.user = { id: 1, username: 'defaultUsername' };
+    }
+    next();
+};
+
+// render view w/ form
+app.get('/', (req, res) => {
+  res.render('addPost');
+});
 
 //Create and use error-handling middleware.
 
@@ -50,7 +72,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Error with pug!');
 });
 
-
+let Attendance = []; 
 
  app.listen(port, () => console.log('server listening on port: ${port}!'))
 
@@ -72,3 +94,4 @@ const logReq = function (req, res, next) {
 
 
 
+1

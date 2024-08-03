@@ -7,6 +7,10 @@ const router = express.Router();
 
 // const serveStatic = require('serve-static');
 
+
+// GET 
+router.get('/', (req,res) => res.json(User));
+
  app.use('/public', express.static('public'));
 
  app.get('User', (req, res) => {
@@ -55,4 +59,4 @@ app.use((req, res, next) => {
 });
 
 
-
+module.exports = router;
