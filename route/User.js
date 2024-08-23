@@ -44,19 +44,15 @@ const Students = [
 });
 
 
-// app.use((req, res, next) => {
-//   console.log('Students');
-//   next();
-// });
+app.use((req, res, next) => {
+  console.log('Students');
+  next();
+});
 
 app.use((err, req, res, next) => {
   res.status(500).send(UH-OH)
 })
 
-// app.use((req, res, next) => {
-//   console.log(`Request received for ${req.url}`);
-//   next(express);
-// });
 
 
 module.exports = router;

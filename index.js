@@ -14,8 +14,8 @@ const AttendanceRoute = require('./route/Attendance');
 
 // test
 
-UserRoute.get('/User', (req, res) => {
-  res.send('User');
+UserRoute.get('./route/User', (req, res) => {
+  res.send('./route/User');
 });
 
 
@@ -25,17 +25,17 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 
-// app.use('/User', UserRoute);
+app.use('/User', UserRoute);
 
-// app.get('/User', (req, res) => {
-//   res.send('Come to class')
-// })
+app.get('/User', (req, res) => {
+  res.send('Come to class')
+})
 
-// app.use('/Attendance', AttendanceRoute);
+app.use('/Attendance', AttendanceRoute);
 
-// app.get('/Attendance', (req, res) => {
-//   res.redirect('https://www.myattendancetracker.com/')
-// })
+app.get('/Attendance', (req, res) => {
+  res.redirect('https://www.myattendancetracker.com/')
+})
 
 
 //MIDDLEWARE//
@@ -78,6 +78,20 @@ const logReq = function (req, res, next) {
   console.log("Request, Recieved");
   next();
 };
+
+// app.post('/route/Attendance', (req, res) => {
+//   // Process form data
+//   const title = req.body.title;
+//   const content = req.body.content;
+
+//   // For demonstration, log the data and redirect
+//   console.log('Title:', title);
+//   console.log('Content:', content);
+
+//   // Redirect to another page after processing
+//   res.redirect('/thank-you');
+// });
+
 //Create and use error-handling middleware.
 
 app.use((err, req, res, next) => {
@@ -99,7 +113,8 @@ app.use((err, req, res, next) => {
 //  console.log('Hello World')
 
 
-// console.log('Hello World')
+// console.log('Hello World')rs
+
 
 
   

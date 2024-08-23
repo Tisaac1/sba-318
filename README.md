@@ -5,6 +5,8 @@ Create Express middleware.
 Use Express middleware.
 Use a template engine to render views with Express.
 Interact with a self-made API through HTML forms.
+I wanted to try to connect a website to my PUG
+https://www.myattendancetracker.com/
 
 I had alot of bugs and I am having issues transfering back and forth on google chrome for the files under data
 

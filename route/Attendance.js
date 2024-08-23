@@ -4,15 +4,23 @@ const port = 4000;
 // const serveStatic = require('serve-static');
 const router = express.Router();
 
-// GET 
-router.get('/', (req,res) => res.json(Attendance));
+// Define a route to handle GET requests to the root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+
+app.post('/submit-form', (req, res) => {
+  const { title, content } = req.body;
+  // console.log('TEST');
+  res.redirect('/thank-you');
+});
+
 app.get('/Attendance', (req, res) => {
-  res.redirect('https://www.myattendancetracker.com/')
-})
+  res.redirect('https://www.myattendancetracker.com/');
+});
 
 
-  // app.listen(express, () => {
-  //   console.log(`Server is running at http://localhost:${}`);
-  // });
+
 
   module.exports = router;
