@@ -9,11 +9,11 @@ const router = express.Router();
 
 
 // GET 
-router.get('/', (req,res) => res.json(User));
+router.get('./route/User', (req,res) => res.json(User));
 
- app.use('/public', express.static('public'));
+ app.use('./public', express.static('public'));
 
- app.get('User', (req, res) => {
+ app.get('./User', (req, res) => {
   res.send('Welcome to the student center')
 })
 
@@ -53,10 +53,10 @@ app.use((err, req, res, next) => {
   res.status(500).send(UH-OH)
 })
 
-app.use((req, res, next) => {
-  console.log(`Request received for ${req.url}`);
-  next(express);
-});
+// app.use((req, res, next) => {
+//   console.log(`Request received for ${req.url}`);
+//   next(express);
+// });
 
 
 module.exports = router;
