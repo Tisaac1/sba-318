@@ -8,7 +8,7 @@ Interact with a self-made API through HTML forms.
 I wanted to try to connect a website to my PUG
 https://www.myattendancetracker.com/
 
-I had alot of bugs and I am having issues transfering back and forth on google chrome for the files under data
+I had alot of bugs and I am having issues transfering back and forth on google chrome for the files under routes//will continue to work on this//
 
 //https://codesandbox.io/p/devbox/express-creating-template-engines-forked-ppvlf7?embed=1&file=%2Fdata%2Fusers.js
 
